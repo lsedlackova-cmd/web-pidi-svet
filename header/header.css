@@ -14,13 +14,13 @@
   --h-desktop: 72px;
 
   /* výška loga */
-  --logo-h-mobile: 30px;
-  --logo-h-tablet: 46px;
+  --logo-h-mobile: 40px;
+  --logo-h-tablet: 50px;
   --logo-h-desktop: 70px;
 }
 
 /* Rezerva pod fixním headerem */
-body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
+body{ padding-top: var(--h-desktop); }
 @media (max-width:1024px){ body{ padding-top: var(--h-tablet); } }
 @media (max-width:425px){ body{ padding-top: var(--h-mobile); } }
 
@@ -35,7 +35,7 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
 
 .header-inner{
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto;     /* [menu] [motto] [logo] */
   align-items: center;
   justify-items: center;
   min-height: var(--h-desktop);
@@ -97,7 +97,7 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
   color: var(--col-accent);
   line-height: 1.25;
   font-size: 28px;
-  letter-spacing: 4px;
+  letter-spacing: 10px;
   max-width: 70%;
   white-space: nowrap;
   overflow: hidden;
@@ -112,9 +112,12 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
 }
 @media (max-width:425px){
   .brand-motto{
-    font-size: 14px;
-    letter-spacing: 2.5px;
-    max-width: 60%;
+    font-size: 12px;          /* menší, aby se vešlo celé */
+    letter-spacing: 1.5px;
+    max-width: 85%;           /* větší prostor */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -139,28 +142,35 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
 @media (max-width:1024px){ .logo-img{ height: var(--logo-h-tablet); } }
 @media (max-width:425px){  .logo-img{ height: var(--logo-h-mobile); } }
 
-/* ============ Dropdown (elegantní verze) ============ */
+/* ============ Dropdown ============ */
 .dropdown{
   position: absolute;
   left: var(--gutter-desktop);
   top: calc(var(--h-desktop) - 1px);
   background: var(--col-bg);
   border: 1px solid var(--col-accent);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 6px;
+  padding: 6px 0;
   display: none;
-  min-width: 220px;
+  min-width: 180px; /* užší než předtím */
+  font-family: 'Raleway', sans-serif;
+  color: var(--col-accent);
 }
 @media (max-width:1024px){
-  .dropdown{ left: var(--gutter-tablet); top: calc(var(--h-tablet) - 1px); }
+  .dropdown{
+    left: var(--gutter-tablet);
+    top: calc(var(--h-tablet) - 1px);
+  }
 }
 @media (max-width:425px){
-  .dropdown{ left: var(--gutter-mobile); top: calc(var(--h-mobile) - 1px); }
+  .dropdown{
+    left: var(--gutter-mobile);
+    top: calc(var(--h-mobile) - 1px);
+  }
 }
 .dropdown.open{ display: block; }
 
-.menu-list{ list-style: none; margin: 0; padding: 4px; }
+.menu-list{ list-style: none; margin: 0; padding: 0; }
 .menu-list > li{ position: relative; }
 
 .menu-list a,
@@ -171,23 +181,21 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
   background: transparent;
   border: 0;
   text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  color: #333;
-  padding: 10px 12px;
-  border-radius: 6px;
+  color: var(--col-accent);
+  padding: 8px 12px;
   font-size: 16px;
+  font-family: 'Raleway', sans-serif;
   cursor: pointer;
-  transition: background 0.2s ease;
 }
 .menu-list a:hover,
 .submenu-toggle:hover{
-  background: rgba(146,108,61,.08);
+  background: rgba(146,108,61,0.1);
 }
 
 /* Submenu Galerie */
 .has-submenu .submenu{
   list-style: none;
-  margin: 4px 0 6px 8px;
+  margin: 2px 0 0 14px;
   padding: 0;
   display: none;
   border-left: 2px solid rgba(146,108,61,.25);
@@ -195,9 +203,14 @@ body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
 .has-submenu.open .submenu{ display: block; }
 
 .submenu li a{
-  font-size: 15px;
-  padding: 8px 12px 8px 14px;
+  font-size: 16px;
+  padding: 6px 12px;
+  font-family: 'Raleway', sans-serif;
+  color: var(--col-accent);
 }
+
+
+
 
 
 
