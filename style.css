@@ -1,0 +1,18 @@
+/* Reset výchozích mezer a sjednocení box modelu */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif; /* základní font – můžeš změnit později */
+  line-height: 1.5;
+  background: #fff;
+  color: #000;
+}

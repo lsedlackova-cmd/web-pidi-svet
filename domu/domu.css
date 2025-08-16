@@ -1,0 +1,27 @@
+/* Úvodní sekce Domů – full-width fotka po celé šířce okna */
+.home-hero {
+  margin: 0;             /* žádné mezery kolem */
+}
+
+.home-hero img {
+  display: block;        /* odstraní mezery pod obrázkem */
+  width: 100%;           /* přes celou šířku */
+  height: auto;          /* zachovat poměr stran */
+}
+
+/* (volitelné) když chceš, aby fotka pokryla výšku obrazovky:
+.home-hero {
+  min-height: calc(100vh - var(--h-desktop));
+}
+@media (max-width:1024px){
+  .home-hero { min-height: calc(100vh - var(--h-tablet)); }
+}
+@media (max-width:425px){
+  .home-hero { min-height: calc(100vh - var(--h-mobile)); }
+}
+.home-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+*/

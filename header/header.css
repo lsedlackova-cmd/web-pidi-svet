@@ -1,77 +1,88 @@
-/* ---------- Barvy a míry ---------- */
+/* ============ Proměnné ============ */
 :root{
   --col-accent: #926C3D;      /* rgb(146,108,61) */
   --col-bg: #F8F7F2;          /* rgb(248,247,242) */
-  --gutter-mobile: 24px;
-  --gutter-tablet: 32px;
+
+  /* vnitřní okraje */
+  --gutter-mobile: 16px;
+  --gutter-tablet: 24px;
   --gutter-desktop: 40px;
 
-  --h-mobile: 52px;
-  --h-tablet: 56px;
-  --h-desktop: 64px;
+  /* výška headeru */
+  --h-mobile: 56px;
+  --h-tablet: 64px;
+  --h-desktop: 72px;
+
+  /* výška loga */
+  --logo-h-mobile: 30px;
+  --logo-h-tablet: 46px;
+  --logo-h-desktop: 70px;
 }
 
-/* Rezervace místa pod fixní header (podle breakpoints) */
-body{ padding-top: var(--h-desktop); }
+/* Rezerva pod fixním headerem */
+body{ padding-top: var(--h-desktop); font-family: 'Montserrat', sans-serif; }
 @media (max-width:1024px){ body{ padding-top: var(--h-tablet); } }
 @media (max-width:425px){ body{ padding-top: var(--h-mobile); } }
 
-/* ---------- Header ---------- */
+/* ============ Header ============ */
 .site-header{
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   background: var(--col-bg);
-  border-bottom: 1px solid var(--col-accent); /* jemná linka */
+  border-bottom: 1px solid var(--col-accent);
 }
 
-/* vnitřní řádek: grid pro perfektní centrování motta */
 .header-inner{
   display: grid;
-  grid-template-columns: auto 1fr auto; /* [menu] [motto] [logo] */
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  height: var(--h-desktop);
+  justify-items: center;
+  min-height: var(--h-desktop);
   padding-inline: var(--gutter-desktop);
   gap: 12px;
+  position: relative;
+  overflow: visible;
 }
 @media (max-width:1024px){
   .header-inner{
-    height: var(--h-tablet);
+    min-height: var(--h-tablet);
     padding-inline: var(--gutter-tablet);
   }
 }
 @media (max-width:425px){
   .header-inner{
-    height: var(--h-mobile);
+    min-height: var(--h-mobile);
     padding-inline: var(--gutter-mobile);
   }
 }
 
-/* ---------- Dvoučárkový burger ---------- */
+/* ============ Menu button ============ */
 .menu-toggle{
   appearance: none;
   background: transparent;
   border: 0;
-  padding: 8px;
+  padding: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.menu-toggle:focus-visible{ outline: 2px solid var(--col-accent); outline-offset: 2px; }
-
+.menu-toggle:focus-visible{
+  outline: 2px solid var(--col-accent);
+  outline-offset: 2px;
+}
 .menu-icon{
   position: relative;
   display: inline-block;
   width: 28px;
-  height: 14px; /* prostor pro 2 čárky */
+  height: 14px;
 }
 .menu-icon::before,
 .menu-icon::after{
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   height: 2px;
   background: var(--col-accent);
   border-radius: 2px;
@@ -79,52 +90,74 @@ body{ padding-top: var(--h-desktop); }
 .menu-icon::before{ top: 0; }
 .menu-icon::after{ bottom: 0; }
 
-/* ---------- Motto ---------- */
+/* ============ Motto ============ */
 .brand-motto{
   text-align: center;
   font-family: 'Great Vibes', cursive;
   color: var(--col-accent);
-  line-height: 1;
-  font-size: 32px; /* výchozí, upraví se podle breakpointů */
+  line-height: 1.25;
+  font-size: 28px;
+  letter-spacing: 4px;
+  max-width: 70%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media (max-width:1024px){ .brand-motto{ font-size: 28px; } }
-@media (max-width:425px){ .brand-motto{ font-size: 24px; } }
+@media (max-width:1024px){
+  .brand-motto{
+    font-size: 20px;
+    letter-spacing: 3px;
+    max-width: 65%;
+  }
+}
+@media (max-width:425px){
+  .brand-motto{
+    font-size: 14px;
+    letter-spacing: 2.5px;
+    max-width: 60%;
+  }
+}
 
-/* ---------- Logo ---------- */
-.logo-link{ display: inline-flex; align-items: center; }
-.logo-img{ display: block; height: 48px; }
-@media (max-width:1024px){ .logo-img{ height: 36px; } }
-@media (max-width:425px){ .logo-img{ height: 28px; } }
+/* ============ Logo ============ */
+.logo-link{
+  position: relative;
+  display: block;
+  height: 100%;
+  justify-self: end;
+  width: auto;
+}
+.logo-img{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  height: var(--logo-h-desktop);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width:1024px){ .logo-img{ height: var(--logo-h-tablet); } }
+@media (max-width:425px){  .logo-img{ height: var(--logo-h-mobile); } }
 
-/* ---------- Dropdown pod ikonou ---------- */
+/* ============ Dropdown (elegantní verze) ============ */
 .dropdown{
   position: absolute;
   left: var(--gutter-desktop);
-  top: calc(var(--h-desktop) - 1px); /* hned pod spodní hranou headeru */
+  top: calc(var(--h-desktop) - 1px);
   background: var(--col-bg);
   border: 1px solid var(--col-accent);
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
   border-radius: 8px;
   padding: 8px;
-  display: none;               /* skryto, dokud není .open */
+  display: none;
   min-width: 220px;
 }
 @media (max-width:1024px){
-  .dropdown{ 
-    left: var(--gutter-tablet);
-    top: calc(var(--h-tablet) - 1px);
-  }
+  .dropdown{ left: var(--gutter-tablet); top: calc(var(--h-tablet) - 1px); }
 }
 @media (max-width:425px){
-  .dropdown{
-    left: var(--gutter-mobile);
-    top: calc(var(--h-mobile) - 1px);
-  }
+  .dropdown{ left: var(--gutter-mobile); top: calc(var(--h-mobile) - 1px); }
 }
-
 .dropdown.open{ display: block; }
 
 .menu-list{ list-style: none; margin: 0; padding: 4px; }
@@ -138,11 +171,13 @@ body{ padding-top: var(--h-desktop); }
   background: transparent;
   border: 0;
   text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
   color: #333;
   padding: 10px 12px;
   border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 .menu-list a:hover,
 .submenu-toggle:hover{
@@ -163,3 +198,10 @@ body{ padding-top: var(--h-desktop); }
   font-size: 15px;
   padding: 8px 12px 8px 14px;
 }
+
+
+
+
+
+
+

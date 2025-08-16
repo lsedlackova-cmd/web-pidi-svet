@@ -5,26 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pidi-svět</title>
 
-  <!-- Google Fonts: elegantní script -->
+  <!-- Google Fonts: motto (Great Vibes) + text/menu (Montserrat) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Globální reset a základní styly -->
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Header styles -->
   <link rel="stylesheet" href="header/header.css" />
+  <!-- Domů styles -->
+  <link rel="stylesheet" href="domu/domu.css" />
 
-  <!-- Globální skript (zatím prázdný, ale načtený) -->
+  <!-- Globální skript -->
   <script src="loading-section.js" defer></script>
 
   <!-- Header logic -->
   <script type="module" src="header/header.js" defer></script>
+  <!-- Domů logic -->
+  <script type="module" src="domu/domu.js" defer></script>
 </head>
 <body>
   <!-- Fixní header se do tohoto kontejneru načte z header/header.html -->
   <div id="header"></div>
 
-  <!-- Rezervní hlavní obsah (jen pro test posunu pod fixní header) -->
-  <main style="min-height: 150vh; padding: 24px;">
-    <!-- sem přijde tvůj obsah -->
-  </main>
+  <!-- Hlavní obsah webu -->
+  <main id="main"></main>
 </body>
 </html>
+
+
