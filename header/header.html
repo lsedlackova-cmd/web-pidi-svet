@@ -1,0 +1,39 @@
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <!-- LEVÁ: dvoučárkový burger -->
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Otevřít menu">
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+
+    <!-- STŘED: motto -->
+    <div class="brand-motto">
+      Malý svět, velká radost.
+    </div>
+
+    <!-- PRAVÁ: logo -->
+    <a class="logo-link" href="./" aria-label="Domů">
+      <img src="img/logo.png" alt="Pidi-svět logo" class="logo-img" />
+    </a>
+  </div>
+
+  <!-- DROPDOWN MENU (pod ikonou) -->
+  <nav id="main-menu" class="dropdown" aria-label="Hlavní navigace">
+    <ul class="menu-list">
+      <li><a href="index.html">Domů</a></li>
+      <li><a href="nas-pidi-svet/nas-pidi-svet.html">Náš PidiSvět</a></li>
+
+      <li class="has-submenu">
+        <button class="submenu-toggle" aria-expanded="false" aria-haspopup="true">
+          Galerie
+        </button>
+        <ul class="submenu">
+          <li><a href="galerie/galerie.html#foto">Foto</a></li>
+          <li><a href="galerie/galerie.html#video">Video</a></li>
+        </ul>
+      </li>
+
+      <li><a href="spokojeni-pidilidi/spokojeni-pidilidi.html">Spokojení Pidilidi</a></li>
+      <li><a href="ozvete-se-nam/ozvete-se-nam.html">Ozvěte se nám</a></li>
+    </ul>
+  </nav>
+</header>

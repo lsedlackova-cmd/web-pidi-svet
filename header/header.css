@@ -1,0 +1,165 @@
+/* ---------- Barvy a míry ---------- */
+:root{
+  --col-accent: #926C3D;      /* rgb(146,108,61) */
+  --col-bg: #F8F7F2;          /* rgb(248,247,242) */
+  --gutter-mobile: 24px;
+  --gutter-tablet: 32px;
+  --gutter-desktop: 40px;
+
+  --h-mobile: 52px;
+  --h-tablet: 56px;
+  --h-desktop: 64px;
+}
+
+/* Rezervace místa pod fixní header (podle breakpoints) */
+body{ padding-top: var(--h-desktop); }
+@media (max-width:1024px){ body{ padding-top: var(--h-tablet); } }
+@media (max-width:425px){ body{ padding-top: var(--h-mobile); } }
+
+/* ---------- Header ---------- */
+.site-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--col-bg);
+  border-bottom: 1px solid var(--col-accent); /* jemná linka */
+}
+
+/* vnitřní řádek: grid pro perfektní centrování motta */
+.header-inner{
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* [menu] [motto] [logo] */
+  align-items: center;
+  height: var(--h-desktop);
+  padding-inline: var(--gutter-desktop);
+  gap: 12px;
+}
+@media (max-width:1024px){
+  .header-inner{
+    height: var(--h-tablet);
+    padding-inline: var(--gutter-tablet);
+  }
+}
+@media (max-width:425px){
+  .header-inner{
+    height: var(--h-mobile);
+    padding-inline: var(--gutter-mobile);
+  }
+}
+
+/* ---------- Dvoučárkový burger ---------- */
+.menu-toggle{
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-toggle:focus-visible{ outline: 2px solid var(--col-accent); outline-offset: 2px; }
+
+.menu-icon{
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 14px; /* prostor pro 2 čárky */
+}
+.menu-icon::before,
+.menu-icon::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--col-accent);
+  border-radius: 2px;
+}
+.menu-icon::before{ top: 0; }
+.menu-icon::after{ bottom: 0; }
+
+/* ---------- Motto ---------- */
+.brand-motto{
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  color: var(--col-accent);
+  line-height: 1;
+  font-size: 32px; /* výchozí, upraví se podle breakpointů */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width:1024px){ .brand-motto{ font-size: 28px; } }
+@media (max-width:425px){ .brand-motto{ font-size: 24px; } }
+
+/* ---------- Logo ---------- */
+.logo-link{ display: inline-flex; align-items: center; }
+.logo-img{ display: block; height: 48px; }
+@media (max-width:1024px){ .logo-img{ height: 36px; } }
+@media (max-width:425px){ .logo-img{ height: 28px; } }
+
+/* ---------- Dropdown pod ikonou ---------- */
+.dropdown{
+  position: absolute;
+  left: var(--gutter-desktop);
+  top: calc(var(--h-desktop) - 1px); /* hned pod spodní hranou headeru */
+  background: var(--col-bg);
+  border: 1px solid var(--col-accent);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border-radius: 8px;
+  padding: 8px;
+  display: none;               /* skryto, dokud není .open */
+  min-width: 220px;
+}
+@media (max-width:1024px){
+  .dropdown{ 
+    left: var(--gutter-tablet);
+    top: calc(var(--h-tablet) - 1px);
+  }
+}
+@media (max-width:425px){
+  .dropdown{
+    left: var(--gutter-mobile);
+    top: calc(var(--h-mobile) - 1px);
+  }
+}
+
+.dropdown.open{ display: block; }
+
+.menu-list{ list-style: none; margin: 0; padding: 4px; }
+.menu-list > li{ position: relative; }
+
+.menu-list a,
+.submenu-toggle{
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.menu-list a:hover,
+.submenu-toggle:hover{
+  background: rgba(146,108,61,.08);
+}
+
+/* Submenu Galerie */
+.has-submenu .submenu{
+  list-style: none;
+  margin: 4px 0 6px 8px;
+  padding: 0;
+  display: none;
+  border-left: 2px solid rgba(146,108,61,.25);
+}
+.has-submenu.open .submenu{ display: block; }
+
+.submenu li a{
+  font-size: 15px;
+  padding: 8px 12px 8px 14px;
+}

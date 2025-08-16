@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pidi-svět</title>
+
+  <!-- Google Fonts: elegantní script -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Header styles -->
+  <link rel="stylesheet" href="header/header.css" />
+
+  <!-- Globální skript (zatím prázdný, ale načtený) -->
+  <script src="loading-section.js" defer></script>
+
+  <!-- Header logic -->
+  <script type="module" src="header/header.js" defer></script>
+</head>
+<body>
+  <!-- Fixní header se do tohoto kontejneru načte z header/header.html -->
+  <div id="header"></div>
+
+  <!-- Rezervní hlavní obsah (jen pro test posunu pod fixní header) -->
+  <main style="min-height: 150vh; padding: 24px;">
+    <!-- sem přijde tvůj obsah -->
+  </main>
+</body>
+</html>
