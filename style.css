@@ -11,19 +11,40 @@ html, body {
 }
 
 body {
-  font-family: 'Raleway', sans-serif; /* sjednocený font */
+  font-family: 'Raleway', sans-serif;
   line-height: 1.6;
-  background: var(--col-bg); /* sjednocené pozadí */
+  background: var(--col-bg);
   color: #333;
 }
 
-/* Globální oddělení sekcí */
+/* Oddělení sekcí – celková mezera mezi sekcemi = výška headeru
+   (nad čárou polovina, pod čárou polovina) */
 .page-section {
   border-bottom: 1px solid var(--col-accent);
-  padding: 40px 0; /* vertikální prostor mezi sekcemi */
+  padding-top: calc(var(--h-desktop) / 2);
+  padding-bottom: calc(var(--h-desktop) / 2);
+}
+
+@media (max-width:1024px) {
+  .page-section {
+    padding-top: calc(var(--h-tablet) / 2);
+    padding-bottom: calc(var(--h-tablet) / 2);
+  }
+}
+
+@media (max-width:425px) {
+  .page-section {
+    padding-top: calc(var(--h-mobile) / 2);
+    padding-bottom: calc(var(--h-mobile) / 2);
+  }
 }
 
 /* Poslední sekce bez spodní linky */
 .page-section:last-child {
   border-bottom: none;
 }
+
+/* Pro jistotu: první/poslední prvek uvnitř sekce nebude přidávat extra mezeru */
+.page-section > *:first-child { margin-top: 0; }
+.page-section > *:last-child { margin-bottom: 0; }
+

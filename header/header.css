@@ -1,7 +1,7 @@
 /* ============ Proměnné ============ */
 :root{
-  --col-accent: #926C3D;      /* rgb(146,108,61) */
-  --col-bg: #F8F7F2;          /* rgb(248,247,242) */
+  --col-accent: #926C3D;
+  --col-bg: #F8F7F2;
 
   /* vnitřní okraje */
   --gutter-mobile: 16px;
@@ -9,7 +9,7 @@
   --gutter-desktop: 40px;
 
   /* výška headeru */
-  --h-mobile: 56px;
+  --h-mobile: 64px;
   --h-tablet: 64px;
   --h-desktop: 72px;
 
@@ -35,24 +35,23 @@ body{ padding-top: var(--h-desktop); }
 
 .header-inner{
   display: grid;
-  grid-template-columns: auto 1fr auto;     /* [menu] [motto] [logo] */
-  align-items: center;
+  grid-template-columns: auto 1fr auto; /* menu – motto – logo */
+  align-items: stretch;          /* buňky mají plnou výšku řádku */
   justify-items: center;
-  min-height: var(--h-desktop);
+  height: var(--h-desktop);      /* pevná výška = přesné centrování */
   padding-inline: var(--gutter-desktop);
   gap: 12px;
   position: relative;
-  overflow: visible;
 }
 @media (max-width:1024px){
   .header-inner{
-    min-height: var(--h-tablet);
+    height: var(--h-tablet);
     padding-inline: var(--gutter-tablet);
   }
 }
 @media (max-width:425px){
   .header-inner{
-    min-height: var(--h-mobile);
+    height: var(--h-mobile);
     padding-inline: var(--gutter-mobile);
   }
 }
@@ -64,9 +63,10 @@ body{ padding-top: var(--h-desktop); }
   border: 0;
   padding: 0;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;                  /* kopíruje výšku řádku */
 }
 .menu-toggle:focus-visible{
   outline: 2px solid var(--col-accent);
@@ -92,16 +92,18 @@ body{ padding-top: var(--h-desktop); }
 
 /* ============ Motto ============ */
 .brand-motto{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;                  /* vyplní výšku buňky = přesný střed */
   text-align: center;
+
   font-family: 'Great Vibes', cursive;
   color: var(--col-accent);
-  line-height: 1.25;
+  line-height: 1;                /* odstraní optické „odsazení“ */
   font-size: 28px;
   letter-spacing: 10px;
   max-width: 70%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 @media (max-width:1024px){
   .brand-motto{
@@ -112,12 +114,10 @@ body{ padding-top: var(--h-desktop); }
 }
 @media (max-width:425px){
   .brand-motto{
-    font-size: 12px;          /* menší, aby se vešlo celé */
-    letter-spacing: 1.5px;
-    max-width: 85%;           /* větší prostor */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    max-width: 90%;
   }
 }
 
@@ -125,7 +125,7 @@ body{ padding-top: var(--h-desktop); }
 .logo-link{
   position: relative;
   display: block;
-  height: 100%;
+  height: 100%;                   /* kopíruje výšku řádku */
   justify-self: end;
   width: auto;
 }
@@ -133,7 +133,7 @@ body{ padding-top: var(--h-desktop); }
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%);    /* střed na výšku */
   height: var(--logo-h-desktop);
   width: auto;
   object-fit: contain;
@@ -152,7 +152,7 @@ body{ padding-top: var(--h-desktop); }
   border-radius: 6px;
   padding: 6px 0;
   display: none;
-  min-width: 180px; /* užší než předtím */
+  min-width: 180px;
   font-family: 'Raleway', sans-serif;
   color: var(--col-accent);
 }
@@ -208,6 +208,9 @@ body{ padding-top: var(--h-desktop); }
   font-family: 'Raleway', sans-serif;
   color: var(--col-accent);
 }
+
+
+
 
 
 

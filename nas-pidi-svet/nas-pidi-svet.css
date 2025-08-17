@@ -7,14 +7,13 @@
 /* Guttery sladěné s headerem */
 .nps-inner{
   padding-inline: var(--gutter-desktop);
-  padding-block: 48px;
   margin: 0 auto;
 }
 @media (max-width:1024px){
-  .nps-inner{ padding-inline: var(--gutter-tablet); padding-block: 40px; }
+  .nps-inner{ padding-inline: var(--gutter-tablet); }
 }
 @media (max-width:425px){
-  .nps-inner{ padding-inline: var(--gutter-mobile); padding-block: 32px; }
+  .nps-inner{ padding-inline: var(--gutter-mobile); }
 }
 
 /* GRID rozvržení:
@@ -40,14 +39,14 @@
     align-items: start;
   }
   /* Desktop: dvě řádky – fotky přesně pod sebou */
-  .nps-text-a  { grid-column: 1; grid-row: 1; }
-  .nps-photo-1 { grid-column: 2; grid-row: 1; }
+  .nps-text-a  { grid-column: 1; grid-row: 1; align-self: start; }
+  .nps-photo-1 { grid-column: 2; grid-row: 1; align-self: start; }
   .nps-text-b  { grid-column: 1; grid-row: 2; }
   .nps-photo-2 { grid-column: 2; grid-row: 2; }
 
   /* >>> Zarovnání fotek k pravému okraji kontejneru (jako logo) <<< */
   .nps-photo{
-    justify-self: end;   /* posune figure k pravému vnitřnímu okraji */
+    justify-self: end;
   }
 }
 
@@ -57,7 +56,7 @@
   color: var(--col-accent);
   font-size: 36px;
   line-height: 1.2;
-  margin: 0 0 10px 0;
+  margin: 0 0 10px 0;   /* odstraněn top margin pro srovnání s fotkou */
 }
 @media (max-width:1024px){ .nps-heading{ font-size: 32px; } }
 @media (max-width:425px){  .nps-heading{ font-size: 28px; } }
@@ -65,7 +64,7 @@
 /* Odstavce – menší řádkování (desktop), aby zmizely velké mezery */
 .nps-text p{
   margin: 0 0 12px 0;
-  color: #6e5435;              /* příbuzný, čitelný odstín k var(--col-accent) */
+  color: #6e5435;
   line-height: 1.6;
   font-size: 16px;
 }
@@ -96,7 +95,8 @@
 /* Skok pod fixním headerem při navigaci hashem */
 .nps-section{ scroll-margin-top: var(--h-desktop); }
 @media (max-width:1024px){ .nps-section{ scroll-margin-top: var(--h-tablet); } }
-@media (max-width:425px){ .nps-section{ scroll-margin-top: var(--h-mobile); } }
-
+@media (max-width:425px){
+  .nps-section{ scroll-margin-top: var(--h-mobile); }
+}
 
 
