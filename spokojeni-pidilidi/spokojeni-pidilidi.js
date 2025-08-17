@@ -40,7 +40,7 @@ const references = [
   }
 
   let current = 0;
-  const interval = 7000; // ms
+  const interval = 18000; // ms
   const fadeMs = 600;
 
   function render(i) {
