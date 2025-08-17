@@ -2,20 +2,14 @@
 
 // Přehled sekcí a jejich souborů v pořadí, jak se mají zobrazit
 const sections = [
-  {
-    key: "domu",
-    html: "domu/domu.html",
-    css: "domu/domu.css"
-  },
-  {
-    key: "nas-pidi-svet",
-    html: "nas-pidi-svet/nas-pidi-svet.html",
-    css: "nas-pidi-svet/nas-pidi-svet.css"
-  }
-  // později můžeš přidat další sekce: galerie, spokojení pidilidi, ...
+  { key: "domu",          html: "domu/domu.html",                 css: "domu/domu.css" },
+  { key: "nas-pidi-svet", html: "nas-pidi-svet/nas-pidi-svet.html", css: "nas-pidi-svet/nas-pidi-svet.css" },
+  // ...další sekce můžeš přidat sem (galerie, spokojeni-pidilidi, ozvete-se-nam)
 ];
 
-// Pomocná: připojit CSS jen jednou
+/* -------------------- Pomocné funkce -------------------- */
+
+// Připojit CSS jen jednou
 function ensureCSS(href) {
   if (!document.querySelector(`link[href="${href}"]`)) {
     const link = document.createElement("link");
@@ -25,21 +19,67 @@ function ensureCSS(href) {
   }
 }
 
-// Načtení všech sekcí pod sebe
+// Normalizace cest v HTML: ../img/... nebo /img/... -> img/...
+function normalizePaths(html) {
+  return html
+    .replaceAll('src="../img/', 'src="img/')
+    .replaceAll('href="../img/', 'href="img/')
+    .replaceAll('src="/img/', 'src="img/')
+    .replaceAll('href="/img/', 'href="img/');
+}
+
+// Přidá cache-bust parametr k <img src="...">, aby se nevázla stará cache na mobilech
+function addCacheBustToImgs(html) {
+  const stamp = Date.now();
+  return html.replace(/(<img\s+[^>]*src="[^"?]+)(\.[a-zA-Z0-9]+)"/g, `$1$2?v=${stamp}"`);
+}
+
+// Nastaví scroll-margin-top wrapperu podle velikosti headeru (desktop/tablet/mobil)
+function applyScrollMargin(el) {
+  const mqDesktop = window.matchMedia("(min-width:1025px)");
+  const mqTablet  = window.matchMedia("(min-width:426px) and (max-width:1024px)");
+  // mobil = jinak
+
+  const rootStyle = getComputedStyle(document.documentElement);
+  const hDesktop = rootStyle.getPropertyValue("--h-desktop")?.trim() || "72px";
+  const hTablet  = rootStyle.getPropertyValue("--h-tablet")?.trim() || "64px";
+  const hMobile  = rootStyle.getPropertyValue("--h-mobile")?.trim() || "56px";
+
+  let val = hMobile;
+  if (mqDesktop.matches) val = hDesktop;
+  else if (mqTablet.matches) val = hTablet;
+
+  el.style.scrollMarginTop = val;
+}
+
+// Po změně velikosti okna obnovíme scroll-margin-top na všech vložených sekcích
+function refreshAllScrollMargins() {
+  document.querySelectorAll(".page-section").forEach(applyScrollMargin);
+}
+
+/* -------------------- Načtení všech sekcí -------------------- */
+
 async function loadAllSections() {
   const main = document.getElementById("main");
-  main.innerHTML = ""; // začneme s prázdným kontejnerem
+  if (!main) return;
+
+  main.innerHTML = "";
 
   for (const section of sections) {
     try {
       const res = await fetch(section.html, { cache: "no-store" });
-      const html = await res.text();
+      const raw = await res.text();
 
-      // zabalíme sekci do <section> s ID, aby šlo scrollovat přímo na ni
+      const html = addCacheBustToImgs(normalizePaths(raw));
+
+      // Wrapper s id pro scroll a třídou na globální styl
       const wrapper = document.createElement("div");
       wrapper.id = section.key;
       wrapper.classList.add("page-section");
       wrapper.innerHTML = html;
+
+      // scroll offset pro pevný header
+      applyScrollMargin(wrapper);
 
       main.appendChild(wrapper);
       ensureCSS(section.css);
@@ -49,19 +89,23 @@ async function loadAllSections() {
   }
 }
 
-// Scroll na správnou sekci podle hashe (#/domu, #/nas-pidi-svet)
+/* -------------------- Routing (hash -> scroll) -------------------- */
+
 function handleRoute() {
   const hash = location.hash.replace(/^#\//, "") || "domu";
   const target = document.getElementById(hash);
   if (target) {
-    target.scrollIntoView({ behavior: "smooth" });
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
-// Inicializace
+/* -------------------- Inicializace -------------------- */
+
 window.addEventListener("DOMContentLoaded", async () => {
   await loadAllSections();
   handleRoute();
+  // aktualizuj scroll offset při změně velikosti
+  window.addEventListener("resize", refreshAllScrollMargins);
 });
 
 window.addEventListener("hashchange", handleRoute);
