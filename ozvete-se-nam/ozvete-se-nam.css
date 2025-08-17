@@ -1,0 +1,136 @@
+:root {
+  --header-height: 120px;
+  --space-xxl: calc(var(--header-height) / 2);
+  --section-bg: var(--color-bg, #faf8f6);
+
+  /* Barvy */
+  --color-title: var(--col-accent, #6e5435); /* tmavší hnědá pro nadpisy */
+  --color-text-strong: var(--color-title);   /* Telefon, Email, Web, Napište nám, tlačítko */
+  --color-text-body: #6e5435;                /* samotné údaje (číslo, email, web) */
+  --border-color: var(--color-title);        /* rámeček i tlačítko stejná barva */
+
+  --radius: var(--radius-md, 16px);
+  --shadow: var(--shadow-card, 0 6px 20px rgba(0,0,0,.06));
+  --font-size-base: var(--font-size-16, 16px);
+  --font-size-small: var(--font-size-14, 14px);
+  --line: 1px;
+}
+
+.section--contact {
+  background: var(--section-bg);
+  margin-top: var(--space-xxl);
+  margin-bottom: var(--space-xxl);
+}
+
+.section--contact .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Nadpis – Great Vibes */
+.section--contact .section__title {
+  display: block;
+  margin: 0 0 28px 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--color-title);
+}
+
+/* Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* Levý sloupec */
+.contact-list {
+  display: grid;
+  gap: 10px;
+}
+.contact-list dt {
+  font-weight: 600;
+  color: var(--color-text-strong); /* názvy Telefon, E-mail, Web */
+}
+.contact-list dd,
+.contact-list a {
+  color: var(--color-text-body, #6e5435); /* samotné údaje */
+  text-decoration: none;
+}
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+/* Pravý sloupec – rámeček */
+.contact-box {
+  border: var(--line) solid var(--border-color); /* ohraničení stejnou barvou jako tlačítko */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+}
+.contact-box label {
+  font-weight: 600;
+  color: var(--color-text-strong); /* „Napište nám“ */
+}
+.contact-box textarea {
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+  background: #f9f9f9;
+  color: var(--color-text-body);
+  border: var(--line) solid var(--border-color);
+  border-radius: calc(var(--radius) - 6px);
+  padding: 12px 14px;
+  font: inherit;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,.03);
+  cursor: not-allowed;
+}
+.contact-box textarea:focus {
+  border-color: var(--color-title);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-title) 20%, transparent);
+}
+
+/* Akce */
+.actions {
+  display: grid;
+  gap: 8px;
+}
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: var(--line) solid var(--border-color); /* stejná barva jako rámeček */
+  background: color-mix(in oklab, var(--color-title) 12%, #fff);
+  color: var(--color-text-strong);
+  font-size: var(--font-size-base);
+  cursor: not-allowed;
+  user-select: none;
+}
+.btn-send svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-text-strong);
+}
+
+.send-note {
+  font-size: var(--font-size-small);
+  opacity: .8;
+  color: var(--color-text-body);
+}
+
+@media (max-width: 860px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+

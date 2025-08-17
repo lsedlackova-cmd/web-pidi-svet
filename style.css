@@ -52,3 +52,21 @@ body {
 /* Odstranění kolizních marginů uvnitř sekcí */
 .page-section > *:first-child { margin-top: 0; }
 .page-section > *:last-child  { margin-bottom: 0; }
+
+/* ===============================
+   Proměnné pro novou sekci „Ozvěte se nám“
+   =============================== */
+:root {
+  --color-bg: var(--col-bg);             /* sekce přebírá hlavní pozadí */
+  --color-accent: var(--col-accent);     /* sekce přebírá akcent */
+  --color-border: color-mix(in oklab, var(--color-accent) 22%, transparent);
+
+  /* fallback hodnoty pro rádiusy, stíny a font-size */
+  --radius-md: 16px;
+  --shadow-card: 0 6px 20px rgba(0,0,0,.06);
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+}
+
+/* Plynulé skrolování mezi sekcemi */
+html { scroll-behavior: smooth; }

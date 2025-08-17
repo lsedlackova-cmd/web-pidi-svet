@@ -2,11 +2,17 @@
 
 // Přehled sekcí a jejich souborů v pořadí, jak se mají zobrazit
 const sections = [
-  { key: "domu",              html: "domu/domu.html",                         css: "domu/domu.css" },
-  { key: "nas-pidi-svet",     html: "nas-pidi-svet/nas-pidi-svet.html",       css: "nas-pidi-svet/nas-pidi-svet.css" },
-  { key: "spokojeni-pidilidi",html: "spokojeni-pidilidi/spokojeni-pidilidi.html", css: "spokojeni-pidilidi/spokojeni-pidilidi.css" },
-  // ...další sekce můžeš přidat sem (galerie, ozvete-se-nam)
+  { key: "domu",                 html: "domu/domu.html",                               css: "domu/domu.css" },
+  { key: "nas-pidi-svet",        html: "nas-pidi-svet/nas-pidi-svet.html",             css: "nas-pidi-svet/nas-pidi-svet.css" },
+  { key: "spokojeni-pidilidi",   html: "spokojeni-pidilidi/spokojeni-pidilidi.html",   css: "spokojeni-pidilidi/spokojeni-pidilidi.css" },
+  { key: "ozvete-se-nam",        html: "ozvete-se-nam/ozvete-se-nam.html",             css: "ozvete-se-nam/ozvete-se-nam.css" }, // ⬅️ nová sekce
+  // ...další sekce můžeš přidat sem (galerie atd.)
 ];
+
+// Aliasování hash-route (např. #/kontakt -> #/ozvete-se-nam)
+const routeAliases = {
+  "kontakt": "ozvete-se-nam",
+};
 
 /* -------------------- Pomocné funkce -------------------- */
 
@@ -105,7 +111,8 @@ async function loadAllSections() {
 /* -------------------- Routing (hash -> scroll) -------------------- */
 
 function handleRoute() {
-  const hash = location.hash.replace(/^#\//, "") || "domu";
+  const raw = location.hash.replace(/^#\//, "") || "domu";
+  const hash = routeAliases[raw] || raw; // podpora aliasů (např. kontakt -> ozvete-se-nam)
   const target = document.getElementById(hash);
   if (target) {
     target.scrollIntoView({ behavior: "smooth", block: "start" });

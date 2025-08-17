@@ -14,6 +14,9 @@
 
   <!-- Header styles -->
   <link rel="stylesheet" href="header/header.css" />
+
+  <!-- Sekce: Ozvěte se nám (styly) -->
+  <link rel="stylesheet" href="ozvete-se-nam/ozvete-se-nam.css" />
 </head>
 <body>
   <!-- Fixní header se sem načte z header/header.html -->
@@ -22,12 +25,17 @@
   <!-- Hlavní obsah webu (sekce se sem vkládají routerem) -->
   <main id="main"></main>
 
-  <!-- Router + načítání sekcí -->
+  <!-- Router + načítání sekcí (zajistí i vložení ozvete-se-nam/ozvete-se-nam.html do #main podle trasy) -->
   <script src="loading-section.js" defer></script>
+
   <!-- Logika pro header (dropdown atd.) -->
   <script type="module" src="header/header.js" defer></script>
+
+  <!-- Sekce: Ozvěte se nám (skript; zatím placeholder) -->
+  <script src="ozvete-se-nam/ozvete-se-nam.js" defer></script>
 </body>
 </html>
+
 
 
 
