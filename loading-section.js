@@ -1,20 +1,19 @@
 // loading-section.js
 
-// Přehled sekcí a jejich souborů
-const routes = {
-  "": {                          // výchozí route (= Domů)
+// Přehled sekcí a jejich souborů v pořadí, jak se mají zobrazit
+const sections = [
+  {
+    key: "domu",
     html: "domu/domu.html",
-    css:  "domu/domu.css"
+    css: "domu/domu.css"
   },
-  "domu": {
-    html: "domu/domu.html",
-    css:  "domu/domu.css"
-  },
-  "nas-pidi-svet": {
+  {
+    key: "nas-pidi-svet",
     html: "nas-pidi-svet/nas-pidi-svet.html",
-    css:  "nas-pidi-svet/nas-pidi-svet.css"
+    css: "nas-pidi-svet/nas-pidi-svet.css"
   }
-};
+  // později můžeš přidat další sekce: galerie, spokojení pidilidi, ...
+];
 
 // Pomocná: připojit CSS jen jednou
 function ensureCSS(href) {
@@ -26,27 +25,43 @@ function ensureCSS(href) {
   }
 }
 
-// Načtení HTML sekce do <main>
-async function loadSection(key) {
-  const route = routes[key] ?? routes[""];
-  try {
-    const res = await fetch(route.html, { cache: "no-store" });
-    const html = await res.text();
-    const main = document.getElementById("main");
-    main.innerHTML = html;
-    ensureCSS(route.css);
-  } catch (e) {
-    console.error("Chyba při načítání sekce:", e);
+// Načtení všech sekcí pod sebe
+async function loadAllSections() {
+  const main = document.getElementById("main");
+  main.innerHTML = ""; // začneme s prázdným kontejnerem
+
+  for (const section of sections) {
+    try {
+      const res = await fetch(section.html, { cache: "no-store" });
+      const html = await res.text();
+
+      // zabalíme sekci do <section> s ID, aby šlo scrollovat přímo na ni
+      const wrapper = document.createElement("div");
+      wrapper.id = section.key;
+      wrapper.classList.add("page-section");
+      wrapper.innerHTML = html;
+
+      main.appendChild(wrapper);
+      ensureCSS(section.css);
+    } catch (e) {
+      console.error("Chyba při načítání sekce:", section.key, e);
+    }
   }
 }
 
-// Router – čte hash #/<sekce>
+// Scroll na správnou sekci podle hashe (#/domu, #/nas-pidi-svet)
 function handleRoute() {
-  const hash = location.hash.replace(/^#\//, "");
-  loadSection(hash);
+  const hash = location.hash.replace(/^#\//, "") || "domu";
+  const target = document.getElementById(hash);
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
-// První načtení + změny hash
-window.addEventListener("hashchange", handleRoute);
-window.addEventListener("DOMContentLoaded", handleRoute);
+// Inicializace
+window.addEventListener("DOMContentLoaded", async () => {
+  await loadAllSections();
+  handleRoute();
+});
 
+window.addEventListener("hashchange", handleRoute);

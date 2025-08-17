@@ -11,8 +11,19 @@ html, body {
 }
 
 body {
-  font-family: Arial, sans-serif; /* základní font – můžeš změnit později */
-  line-height: 1.5;
-  background: #fff;
-  color: #000;
+  font-family: 'Raleway', sans-serif; /* sjednocený font */
+  line-height: 1.6;
+  background: var(--col-bg); /* sjednocené pozadí */
+  color: #333;
+}
+
+/* Globální oddělení sekcí */
+.page-section {
+  border-bottom: 1px solid var(--col-accent);
+  padding: 40px 0; /* vertikální prostor mezi sekcemi */
+}
+
+/* Poslední sekce bez spodní linky */
+.page-section:last-child {
+  border-bottom: none;
 }
