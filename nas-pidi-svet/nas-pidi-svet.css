@@ -1,0 +1,96 @@
+/* Stejné pozadí jako zbytek webu + sjednocený font (Raleway) */
+.nps-section{
+  background: var(--col-bg);
+  font-family: 'Raleway', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Guttery sladěné s headerem */
+.nps-inner{
+  padding-inline: var(--gutter-desktop);
+  padding-block: 48px;
+  margin: 0 auto;
+}
+@media (max-width:1024px){
+  .nps-inner{ padding-inline: var(--gutter-tablet); padding-block: 40px; }
+}
+@media (max-width:425px){
+  .nps-inner{ padding-inline: var(--gutter-mobile); padding-block: 32px; }
+}
+
+/* GRID rozvržení:
+   - Mobil: 1 sloupec, pořadí: textA → foto1 → textB → foto2
+   - Desktop: 2 sloupce, text vlevo, fotky vpravo přesně pod sebou
+*/
+.nps-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Mobilní pořadí (implicitní) */
+.nps-text-a   { order: 1; }
+.nps-photo-1  { order: 2; }
+.nps-text-b   { order: 3; }
+.nps-photo-2  { order: 4; }
+
+@media (min-width:1025px){
+  .nps-grid{
+    grid-template-columns: 3fr 2fr; /* ~60 % text / 40 % fotky */
+    gap: 28px;
+    align-items: start;
+  }
+  /* Desktop: dvě řádky – fotky přesně pod sebou, menší šířka = méně „vzduchu“ */
+  .nps-text-a  { grid-column: 1; grid-row: 1; }
+  .nps-photo-1 { grid-column: 2; grid-row: 1; }
+  .nps-text-b  { grid-column: 1; grid-row: 2; }
+  .nps-photo-2 { grid-column: 2; grid-row: 2; }
+}
+
+/* Nadpis v textu – font jako motto (Great Vibes) */
+.nps-heading{
+  font-family: 'Great Vibes', cursive;
+  color: var(--col-accent);
+  font-size: 36px;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+}
+@media (max-width:1024px){ .nps-heading{ font-size: 32px; } }
+@media (max-width:425px){  .nps-heading{ font-size: 28px; } }
+
+/* Odstavce – menší řádkování (desktop), aby zmizely velké mezery */
+.nps-text p{
+  margin: 0 0 12px 0;
+  color: #6e5435;              /* příbuzný, čitelný odstín k var(--col-accent) */
+  line-height: 1.6;            /* ↓ menší než dřív */
+  font-size: 16px;
+}
+@media (max-width:1024px){
+  .nps-text p{ line-height: 1.55; }
+}
+@media (max-width:425px){
+  .nps-text p{ line-height: 1.5; }
+}
+
+/* Obrázky – na desktopu menší šířka (≈85 % sloupce) a lícování pod sebou */
+.nps-photo{
+  margin: 0;
+}
+.nps-photo img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+@media (min-width:1025px){
+  .nps-photo img{
+    width: 85%;           /* zmenšení = menší „vzduch“ vedle textu */
+  }
+}
+
+/* Skok pod fixním headerem při navigaci hashem */
+.nps-section{ scroll-margin-top: var(--h-desktop); }
+@media (max-width:1024px){ .nps-section{ scroll-margin-top: var(--h-tablet); } }
+@media (max-width:425px){ .nps-section{ scroll-margin-top: var(--h-mobile); } }
+
+

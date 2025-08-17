@@ -14,25 +14,22 @@
 
   <!-- Header styles -->
   <link rel="stylesheet" href="header/header.css" />
-  <!-- Domů styles -->
-  <link rel="stylesheet" href="domu/domu.css" />
-
-  <!-- Globální skript -->
-  <script src="loading-section.js" defer></script>
-
-  <!-- Header logic -->
-  <script type="module" src="header/header.js" defer></script>
-  <!-- Domů logic -->
-  <script type="module" src="domu/domu.js" defer></script>
 </head>
 <body>
-  <!-- Fixní header se do tohoto kontejneru načte z header/header.html -->
+  <!-- Fixní header se sem načte z header/header.html -->
   <div id="header"></div>
 
-  <!-- Hlavní obsah webu -->
+  <!-- Hlavní obsah webu (sekce se sem vkládají routerem) -->
   <main id="main"></main>
+
+  <!-- Router + načítání sekcí -->
+  <script src="loading-section.js" defer></script>
+  <!-- Logika pro header (dropdown atd.) -->
+  <script type="module" src="header/header.js" defer></script>
 </body>
 </html>
+
+
 
 
 
