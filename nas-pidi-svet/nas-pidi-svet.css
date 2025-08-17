@@ -39,11 +39,16 @@
     gap: 28px;
     align-items: start;
   }
-  /* Desktop: dvě řádky – fotky přesně pod sebou, menší šířka = méně „vzduchu“ */
+  /* Desktop: dvě řádky – fotky přesně pod sebou */
   .nps-text-a  { grid-column: 1; grid-row: 1; }
   .nps-photo-1 { grid-column: 2; grid-row: 1; }
   .nps-text-b  { grid-column: 1; grid-row: 2; }
   .nps-photo-2 { grid-column: 2; grid-row: 2; }
+
+  /* >>> Zarovnání fotek k pravému okraji kontejneru (jako logo) <<< */
+  .nps-photo{
+    justify-self: end;   /* posune figure k pravému vnitřnímu okraji */
+  }
 }
 
 /* Nadpis v textu – font jako motto (Great Vibes) */
@@ -61,7 +66,7 @@
 .nps-text p{
   margin: 0 0 12px 0;
   color: #6e5435;              /* příbuzný, čitelný odstín k var(--col-accent) */
-  line-height: 1.6;            /* ↓ menší než dřív */
+  line-height: 1.6;
   font-size: 16px;
 }
 @media (max-width:1024px){
@@ -71,7 +76,7 @@
   .nps-text p{ line-height: 1.5; }
 }
 
-/* Obrázky – na desktopu menší šířka (≈85 % sloupce) a lícování pod sebou */
+/* Obrázky – na desktopu menší šířka (≈85 % sloupce) */
 .nps-photo{
   margin: 0;
 }
@@ -84,7 +89,7 @@
 }
 @media (min-width:1025px){
   .nps-photo img{
-    width: 85%;           /* zmenšení = menší „vzduch“ vedle textu */
+    width: 95%;
   }
 }
 
@@ -92,5 +97,6 @@
 .nps-section{ scroll-margin-top: var(--h-desktop); }
 @media (max-width:1024px){ .nps-section{ scroll-margin-top: var(--h-tablet); } }
 @media (max-width:425px){ .nps-section{ scroll-margin-top: var(--h-mobile); } }
+
 
 
