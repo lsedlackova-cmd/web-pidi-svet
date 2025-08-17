@@ -1,0 +1,92 @@
+/* =========================
+   Spokojení Pidilidi – CSS
+   ========================= */
+
+/* Sekce – žádné svislé odsazení navíc, vertikální mezery řeší .page-section */
+.spp-section {
+  background: var(--col-bg);
+  margin: 0;
+  padding: 0;               /* důležité: ať mezery řídí jen .page-section */
+  text-align: center;
+}
+
+/* Vnitřní kontejner – jen horizontální guttery, bez top/bottom paddingu */
+.spp-inner {
+  padding-inline: var(--gutter-desktop);
+  margin: 0 auto;
+  max-width: 1100px;
+}
+@media (max-width:1024px){
+  .spp-inner { padding-inline: var(--gutter-tablet); }
+}
+@media (max-width:425px){
+  .spp-inner { padding-inline: var(--gutter-mobile); }
+}
+
+/* Úvodní text – identický styl jako "Náš příběh" (Great Vibes, accent barva) */
+.spp-intro p {
+  font-family: 'Great Vibes', cursive;
+  color: var(--col-accent);
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+  font-size: 36px;  /* desktop = jako .nps-heading */
+}
+@media (max-width:1024px){ .spp-intro p { font-size: 32px; } }
+@media (max-width:425px){  .spp-intro p { font-size: 28px; } }
+
+/* Rámeček reference – větší, vystředěný, barvy sladěné s webem */
+.spp-reference {
+  background: var(--col-bg);                /* stejná výplň jako celý web */
+  border: 1px solid var(--col-accent);      /* přesná accent barva (jemný rám) */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  padding: 32px 36px;
+  margin: 24px auto 0 auto;
+  max-width: 820px;                         /* větší na desktopu */
+  transition: opacity 0.6s ease-in-out;
+  opacity: 1;
+}
+@media (max-width:1024px){
+  .spp-reference{ max-width: 720px; padding: 28px 30px; }
+}
+@media (max-width:425px){
+  .spp-reference{ max-width: 95%; padding: 20px; }
+}
+
+/* Fade animace při přepínání */
+.spp-reference.fade { opacity: 0; }
+
+/* Text citace – stejné ladění jako odstavce v "Náš PidiSvět" */
+.spp-quote p {
+  font-family: 'Raleway', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #6e5435;           /* shodný odstín, který používáme v Náš PidiSvět */
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0 0 18px 0;
+}
+@media (max-width:1024px){ .spp-quote p{ font-size: 16px; line-height: 1.6; } }
+@media (max-width:425px){  .spp-quote p{ font-size: 15px; line-height: 1.55; } }
+
+/* Meta (jméno – datum/místo) – stejné písmo a barva jako motto */
+.spp-meta {
+  font-family: 'Great Vibes', cursive;  /* stejné jako brand motto */
+  color: var(--col-accent);
+  font-size: 26px;
+  margin: 0 0 10px 0;
+}
+@media (max-width:1024px){ .spp-meta{ font-size: 22px; } }
+@media (max-width:425px){  .spp-meta{ font-size: 20px; } }
+
+/* Hodnocení – domečky */
+.spp-rating {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1;
+}
+.spp-rating span {
+  font-size: 22px;
+  color: var(--col-accent);
+}
+
+

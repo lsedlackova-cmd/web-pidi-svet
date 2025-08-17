@@ -17,14 +17,18 @@ body {
   color: #333;
 }
 
-/* Oddělení sekcí – celková mezera mezi sekcemi = výška headeru
-   (nad čárou polovina, pod čárou polovina) */
+/* ===============================
+   Oddělení sekcí
+   =============================== */
+
+/* Základ – každá sekce má nahoře i dole půlku výšky headeru */
 .page-section {
   border-bottom: 1px solid var(--col-accent);
   padding-top: calc(var(--h-desktop) / 2);
   padding-bottom: calc(var(--h-desktop) / 2);
 }
 
+/* Tablet */
 @media (max-width:1024px) {
   .page-section {
     padding-top: calc(var(--h-tablet) / 2);
@@ -32,6 +36,7 @@ body {
   }
 }
 
+/* Mobil */
 @media (max-width:425px) {
   .page-section {
     padding-top: calc(var(--h-mobile) / 2);
@@ -39,12 +44,11 @@ body {
   }
 }
 
-/* Poslední sekce bez spodní linky */
+/* Poslední sekce nemá spodní čáru, ale mezera se zachová */
 .page-section:last-child {
   border-bottom: none;
 }
 
-/* Pro jistotu: první/poslední prvek uvnitř sekce nebude přidávat extra mezeru */
+/* Odstranění kolizních marginů uvnitř sekcí */
 .page-section > *:first-child { margin-top: 0; }
-.page-section > *:last-child { margin-bottom: 0; }
-
+.page-section > *:last-child  { margin-bottom: 0; }

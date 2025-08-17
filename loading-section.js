@@ -2,9 +2,10 @@
 
 // Přehled sekcí a jejich souborů v pořadí, jak se mají zobrazit
 const sections = [
-  { key: "domu",          html: "domu/domu.html",                 css: "domu/domu.css" },
-  { key: "nas-pidi-svet", html: "nas-pidi-svet/nas-pidi-svet.html", css: "nas-pidi-svet/nas-pidi-svet.css" },
-  // ...další sekce můžeš přidat sem (galerie, spokojeni-pidilidi, ozvete-se-nam)
+  { key: "domu",              html: "domu/domu.html",                         css: "domu/domu.css" },
+  { key: "nas-pidi-svet",     html: "nas-pidi-svet/nas-pidi-svet.html",       css: "nas-pidi-svet/nas-pidi-svet.css" },
+  { key: "spokojeni-pidilidi",html: "spokojeni-pidilidi/spokojeni-pidilidi.html", css: "spokojeni-pidilidi/spokojeni-pidilidi.css" },
+  // ...další sekce můžeš přidat sem (galerie, ozvete-se-nam)
 ];
 
 /* -------------------- Pomocné funkce -------------------- */
@@ -83,6 +84,18 @@ async function loadAllSections() {
 
       main.appendChild(wrapper);
       ensureCSS(section.css);
+
+      // pokud má sekce svůj vlastní JS, připoj ho také
+      const jsPath = `${section.key}/${section.key}.js`;
+      fetch(jsPath, { method: "HEAD" })
+        .then(res => {
+          if (res.ok) {
+            const script = document.createElement("script");
+            script.src = jsPath;
+            document.body.appendChild(script);
+          }
+        })
+        .catch(() => {});
     } catch (e) {
       console.error("Chyba při načítání sekce:", section.key, e);
     }
