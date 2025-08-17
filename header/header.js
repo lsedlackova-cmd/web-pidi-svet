@@ -40,22 +40,32 @@ function wireHeaderInteractions(root) {
   // zavření při kliknutí mimo
   document.addEventListener('click', (e) => {
     if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      hasSubmenu?.classList.remove('open');
-      submenuToggle?.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   });
 
   // zavření ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      hasSubmenu?.classList.remove('open');
-      submenuToggle?.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   });
+
+  // >>> NOVÉ: zavřít menu při kliknutí na odkaz v menu nebo submenu
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // Pomocná funkce pro zavření všeho
+  function closeMenu() {
+    menu.classList.remove('open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    hasSubmenu?.classList.remove('open');
+    submenuToggle?.setAttribute('aria-expanded', 'false');
+  }
 }
 
 injectHeader();
+
