@@ -17,6 +17,9 @@
 
   <!-- Sekce: Ozvěte se nám (styly) -->
   <link rel="stylesheet" href="ozvete-se-nam/ozvete-se-nam.css" />
+
+  <!-- Footer styles -->
+  <link rel="stylesheet" href="footer/footer.css" />
 </head>
 <body>
   <!-- Fixní header se sem načte z header/header.html -->
@@ -25,7 +28,10 @@
   <!-- Hlavní obsah webu (sekce se sem vkládají routerem) -->
   <main id="main"></main>
 
-  <!-- Router + načítání sekcí (zajistí i vložení ozvete-se-nam/ozvete-se-nam.html do #main podle trasy) -->
+  <!-- Footer se sem načte z footer/footer.html -->
+  <div id="footer"></div>
+
+  <!-- Router + načítání sekcí (vč. ozvete-se-nam) -->
   <script src="loading-section.js" defer></script>
 
   <!-- Logika pro header (dropdown atd.) -->
@@ -33,8 +39,12 @@
 
   <!-- Sekce: Ozvěte se nám (skript; zatím placeholder) -->
   <script src="ozvete-se-nam/ozvete-se-nam.js" defer></script>
+
+  <!-- Logika pro footer (načtení footer.html) -->
+  <script src="footer/footer.js" defer></script>
 </body>
 </html>
+
 
 
 

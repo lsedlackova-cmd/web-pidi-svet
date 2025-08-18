@@ -1,0 +1,105 @@
+:root{
+  --footer-bg: var(--col-bg, #faf8f6);
+  --footer-text: var(--col-accent, #6e5435);
+  --footer-border: var(--col-accent, #6e5435);
+
+  --container-max: 1200px;
+  --container-pad: 24px;
+  --footer-logo-h: 40px;
+}
+
+.site-footer{
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid var(--footer-border);
+
+  /* vždy stejná výška jako header */
+  height: var(--h-desktop);
+  display: flex;
+  align-items: center;
+
+  /* mezera od předchozí sekce */
+  margin-top: calc(var(--h-desktop) / 2);
+}
+
+.footer-inner{
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  height: 100%; /* obsah se roztáhne na výšku footeru */
+}
+
+.footer-logo img{
+  display: block;
+  height: var(--footer-logo-h);
+  width: auto;
+  opacity: .95;
+}
+
+.footer-copy{
+  text-align: right;   /* dříve center → teď zarovnáno vpravo */
+  color: var(--footer-text);
+}
+
+.footer-credit{
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--footer-text);
+}
+
+/* Tablet */
+@media (max-width:1024px){
+  .site-footer{
+    height: var(--h-tablet);
+    margin-top: calc(var(--h-tablet) / 2);
+  }
+}
+
+/* Mobil */
+@media (max-width:640px){
+  .site-footer{
+    height: var(--h-mobile);
+    margin-top: calc(var(--h-mobile) / 2);
+  }
+
+  .footer-inner{
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "logo texts";
+    align-items: center;
+  }
+
+  .footer-logo{ grid-area: logo; }
+
+  .footer-texts{ 
+    grid-area: texts; 
+    text-align: right; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;              /* žádná mezera mezi řádky */
+    font-size: 13px;     /* menší písmo */
+    line-height: 1.1;    /* řádky blízko u sebe */
+  }
+
+  .footer-copy, 
+  .footer-credit{
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: right;
+  }
+
+  .footer-logo img{ height: calc(var(--footer-logo-h) - 4px); }
+}
+
+
+
+
